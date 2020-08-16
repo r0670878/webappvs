@@ -1,0 +1,49 @@
+﻿@model IEnumerable<webappvs.Models.WinkelWagenDetails>
+
+@{
+    ViewData["Title"] = "Winkelwagen";
+
+}
+
+<h1>Winkelwagen</h1>
+<div style="overflow-x:auto;">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Spelnaam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Aantal)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Spelnaam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aantal)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.WinkelWagenDetailsID"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<form asp-action="SendOrder" asp-controller="WinkelWagen">
+    <button type="submit" class="btn btn-primary">Bestellen</button>
+</form>
+
+
+
+

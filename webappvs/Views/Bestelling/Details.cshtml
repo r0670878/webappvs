@@ -1,0 +1,58 @@
+﻿@model IEnumerable<webappvs.Models.BestellingDetails>
+
+
+@{
+    ViewData["Title"] = "Bestelling Details";
+}
+
+<h1>Bestelling Details</h1>
+
+
+@foreach (var item in Model)
+{
+    <hr />
+
+    <div class="card-columns mt-3">
+        <div class="media">
+            <div class="media-left">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">@Html.DisplayFor(modelItem => item.SpelNaam)</h4>
+                <table>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => item.Spel.Console) :
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Spel.Console)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => item.Spel.Soort) :
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Spel.Soort)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(modelItem => item.Aantal) :
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aantal)
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div class="mt-3">
+
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,48 @@
+﻿@model webappvs.ViewModels.LijstSpelViewModel
+
+@{
+    ViewData["Title"] = "Producten";
+}
+
+<h1>Spellen</h1>
+@if (this.User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Nieuw spel toevoegen</a>
+    </p>
+
+}
+
+<form asp-controller="Product" asp-action="Search" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Product zoeken:
+            <input asp-for="SpelZoeken" />
+            <input type="submit" value="Zoeken" class="btn btn-primary" /> <br />
+            <a asp-controller="Product" asp-action="Index">Ga terug naar volledige lijst</a>
+        </p>
+    </div>
+</form>
+
+<div class="card-columns">
+    @foreach (var item in Model.Spellen)
+    {
+
+        <div class="card" style="width:300px">
+            <img class="card-img-top" src="~/lib/Images/badzout.jpg">
+            <div class="card-body">
+                <h4 class="card-title"> @Html.DisplayFor(modelItem => item.SpelNaam)</h4>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Soort)</p>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SpelID">Details</a>
+                @if (this.User.IsInRole("Administrator"))
+                {<p>
+                        <a asp-action="Edit" asp-route-id="@item.SpelID">Aanpassen</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SpelID">Verwijderen</a>
+                    </p>
+                }
+            </div>
+        </div>
+
+    }
+</div>
+

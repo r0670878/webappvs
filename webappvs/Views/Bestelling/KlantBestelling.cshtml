@@ -1,0 +1,46 @@
+﻿@model IEnumerable<webappvs.Models.Bestelling>
+
+@{
+    ViewData["Title"] = "Bestellingen";
+}
+
+<h1>Bestellingen</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.beschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Korting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prijs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Klant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.beschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Korting)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prijs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Klant.Naam)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+﻿@model webappvs.ViewModels.LijstBestellingViewModel
+
+    @{
+        ViewData["Title"] = "Bestellingen";
+    }
+        <form asp-controller="Order" asp-action="Search" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Leverings status zoeken:
+                    <input asp-for="BestellingZoeken" />
+                    <input type="submit" value="Zoeken" class="btn btn-outline-primary" />
+                    <a asp-controller="Order" asp-action="Index"><i class="fas fa-undo"></i></a>
+                </p>
+            </div>
+        </form>
+
+    <h1>Bestellingen</h1>
+    <div style="overflow-x:auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bestellingen[0].beschrijving)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bestellingen[0].prijs)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bestellingen[0].Korting)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bestellingen[0].Klant.Voornaam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bestellingen[0].Klant.Naam)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bestellingen)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.beschrijving)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.prijs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Korting)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Klant.Voornaam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Klant.Naam)
+                        </td>
+                        <td>
+
+                            <a asp-action="Details" asp-route-id="@item.BestellingID" asp-controller="Order"><i class="fas fa-info-circle"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.BestellingID" asp-controller="Order"><i class="fas fa-pencil-alt"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.BestellingID" asp-controller="Order"><i class="fas fa-trash-alt"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

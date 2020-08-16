@@ -1,0 +1,51 @@
+﻿@model webappvs.Models.Spel
+
+    @{
+        ViewData["Title"] = "Details";
+    }
+
+    <h1>Product Details</h1>
+
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.SpelNaam)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.SpelNaam)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Soort)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Soort)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Console)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Console)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        @if (this.User.IsInRole("Administrator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.SpelID">Edit</a>
+        }
+
+        @if (this.User.Identity.IsAuthenticated)
+        {
+            <form asp-action="AddProduct" asp-route-productID="@Model.SpelID" class="pull-right">
+                <input type="submit" value="Toevoegen aan winkelwagen" class="btn btn-primary btn-sm pull-right w3-hover-shadow" />
+            </form>
+        }
+
+        <br />
+        <a asp-action="Index">Back to List</a>
+
+
+    </div>
